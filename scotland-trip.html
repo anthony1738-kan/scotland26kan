@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scotland June 2026 — Family Trip Planner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --paper: #f5f0e8;
+    --heather: #7b4f6e;
+    --thistle: #c9a6bc;
+    --moss: #3d5a3e;
+    --gold: #c9a84c;
+    --mist: #e8e4dc;
+    --stone: #8c8070;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    min-height: 100vh;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--ink);
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 70%, rgba(61,90,62,0.45) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 80% 30%, rgba(123,79,110,0.35) 0%, transparent 60%),
+      radial-gradient(ellipse 100% 50% at 50% 100%, rgba(26,26,46,0.8) 0%, transparent 80%),
+      linear-gradient(160deg, #0d1b2a 0%, #1a2a1a 40%, #2a1520 100%);
+  }
+
+  /* Subtle tartan grid overlay */
+  .hero-tartan {
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(201,168,188,0.06) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(201,168,188,0.06) 40px);
+    pointer-events: none;
+  }
+
+  /* Stars/mist particles */
+  .hero-particles {
+    position: absolute; inset: 0; pointer-events: none;
+  }
+  .hero-particles span {
+    position: absolute;
+    width: 2px; height: 2px;
+    background: rgba(245,240,232,0.6);
+    border-radius: 50%;
+    animation: twinkle 4s ease-in-out infinite;
+  }
+
+  @keyframes twinkle {
+    0%,100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.5); }
+  }
+
+  /* Stylised mountain silhouette */
+  .hero-mountains {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 220px;
+    pointer-events: none;
+  }
+
+  .hero-mountains svg { width: 100%; height: 100%; }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center;
+    padding: 0 20px;
+    animation: fadeUp 1.2s ease forwards;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow {
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--thistle);
+    margin-bottom: 18px;
+    opacity: 0.9;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 400;
+    color: var(--paper);
+    line-height: 1.05;
+    margin-bottom: 12px;
+    text-shadow: 0 4px 40px rgba(0,0,0,0.5);
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--thistle);
+  }
+
+  .hero-subtitle {
+    font-size: 1.05rem;
+    color: rgba(245,240,232,0.65);
+    margin-bottom: 48px;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+  }
+
+  .hero-cta {
+    display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+  }
+
+  .btn-primary {
+    background: var(--heather);
+    color: var(--paper);
+    border: none; cursor: pointer;
+    padding: 14px 32px;
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    border-radius: 2px;
+    transition: all 0.25s;
+    text-decoration: none;
+  }
+  .btn-primary:hover { background: #8f5c80; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(123,79,110,0.4); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--paper);
+    border: 1px solid rgba(245,240,232,0.3);
+    cursor: pointer;
+    padding: 14px 32px;
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    border-radius: 2px;
+    transition: all 0.25s;
+    text-decoration: none;
+  }
+  .btn-ghost:hover { border-color: rgba(245,240,232,0.7); background: rgba(245,240,232,0.08); transform: translateY(-2px); }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 28px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    color: rgba(245,240,232,0.4);
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    animation: bob 2.5s ease-in-out infinite;
+  }
+  @keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+  .scroll-hint-line { width: 1px; height: 32px; background: rgba(245,240,232,0.25); }
+
+  /* ─── NAV TABS ─── */
+  .tabs-bar {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--ink);
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    border-bottom: 1px solid rgba(245,240,232,0.1);
+  }
+  .tabs-bar::-webkit-scrollbar { display: none; }
+
+  .tab-btn {
+    flex-shrink: 0;
+    padding: 16px 24px;
+    background: none; border: none; cursor: pointer;
+    color: rgba(245,240,232,0.5);
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .tab-btn:hover { color: rgba(245,240,232,0.85); }
+  .tab-btn.active {
+    color: var(--thistle);
+    border-bottom-color: var(--heather);
+  }
+
+  /* ─── SECTIONS ─── */
+  .section { display: none; padding: 60px 20px; max-width: 1000px; margin: 0 auto; }
+  .section.active { display: block; animation: sectionIn 0.4s ease; }
+  @keyframes sectionIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+
+  .section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .section-heading em { font-style: italic; color: var(--heather); }
+  .section-sub {
+    color: var(--stone);
+    font-size: 0.95rem;
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+
+  /* ─── TRAVELLERS ─── */
+  .travellers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+
+  .traveller-card {
+    background: white;
+    border: 1px solid var(--mist);
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+    transition: box-shadow 0.2s, transform 0.2s;
+    cursor: pointer;
+    position: relative;
+  }
+  .traveller-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); transform: translateY(-2px); }
+  .traveller-card.editing { border-color: var(--heather); box-shadow: 0 0 0 3px rgba(123,79,110,0.15); }
+
+  .traveller-avatar {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    margin: 0 auto 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem;
+    background: var(--mist);
+  }
+
+  .traveller-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+  }
+
+  .traveller-role {
+    font-size: 0.78rem;
+    color: var(--stone);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .traveller-notes {
+    font-size: 0.82rem;
+    color: var(--stone);
+    font-style: italic;
+    min-height: 28px;
+    cursor: text;
+    border-bottom: 1px dashed var(--mist);
+    padding-bottom: 4px;
+    outline: none;
+  }
+  .traveller-notes:focus { border-bottom-color: var(--heather); }
+  .traveller-notes:empty:before { content: attr(data-placeholder); color: var(--thistle); }
+
+  .add-traveller {
+    background: none;
+    border: 1.5px dashed var(--thistle);
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+    color: var(--stone);
+    cursor: pointer;
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .add-traveller:hover { border-color: var(--heather); color: var(--heather); background: rgba(123,79,110,0.04); }
+
+  /* ─── ITINERARY ─── */
+  .day-block {
+    margin-bottom: 28px;
+    border-left: 3px solid var(--thistle);
+    padding-left: 20px;
+    position: relative;
+  }
+  .day-block::before {
+    content: '';
+    position: absolute; left: -6px; top: 8px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--heather);
+  }
+
+  .day-header {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap;
+  }
+
+  .day-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--heather);
+  }
+
+  .day-date {
+    font-size: 0.82rem;
+    color: var(--stone);
+    letter-spacing: 0.06em;
+  }
+
+  .day-activities {
+    display: flex; flex-direction: column; gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .activity-item {
+    background: white;
+    border: 1px solid var(--mist);
+    border-radius: 3px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    transition: all 0.2s;
+    cursor: grab;
+  }
+  .activity-item:hover { border-color: var(--thistle); box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+
+  .activity-icon { font-size: 1rem; margin-top: 2px; flex-shrink: 0; }
+
+  .activity-content { flex: 1; }
+  .activity-title {
+    font-size: 0.92rem;
+    margin-bottom: 2px;
+    outline: none;
+    border-bottom: 1px solid transparent;
+  }
+  .activity-title:focus { border-bottom-color: var(--heather); }
+  .activity-title:empty:before { content: "Activity name..."; color: var(--thistle); }
+
+  .activity-detail {
+    font-size: 0.78rem;
+    color: var(--stone);
+    font-weight: 300;
+    outline: none;
+  }
+  .activity-detail:focus { color: var(--ink); }
+  .activity-detail:empty:before { content: "Notes / timings..."; color: var(--thistle); }
+
+  .activity-votes {
+    display: flex; gap: 6px; align-items: center; margin-top: 6px;
+  }
+  .vote-btn {
+    background: none; border: 1px solid var(--mist); border-radius: 20px;
+    padding: 2px 8px; font-size: 0.72rem; cursor: pointer;
+    color: var(--stone); transition: all 0.15s;
+    font-family: 'Source Serif 4', serif;
+  }
+  .vote-btn.yes { color: var(--moss); border-color: var(--moss); }
+  .vote-btn.yes:hover, .vote-btn.yes.active { background: var(--moss); color: white; }
+  .vote-btn.no { color: #a04040; border-color: #a04040; }
+  .vote-btn.no:hover, .vote-btn.no.active { background: #a04040; color: white; }
+
+  .vote-count { font-size: 0.72rem; color: var(--stone); }
+
+  .delete-btn {
+    background: none; border: none; cursor: pointer;
+    color: var(--mist); font-size: 0.9rem; padding: 4px;
+    transition: color 0.15s; flex-shrink: 0;
+  }
+  .delete-btn:hover { color: #a04040; }
+
+  .add-activity-btn {
+    background: none; border: 1.5px dashed var(--mist);
+    border-radius: 3px; padding: 8px 14px;
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.82rem; color: var(--stone);
+    cursor: pointer; transition: all 0.2s; width: 100%;
+  }
+  .add-activity-btn:hover { border-color: var(--heather); color: var(--heather); }
+
+  .add-day-btn {
+    display: flex; align-items: center; gap: 8px;
+    background: none; border: none; cursor: pointer;
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; color: var(--heather);
+    padding: 8px 0; margin-top: 8px;
+    transition: opacity 0.2s;
+  }
+  .add-day-btn:hover { opacity: 0.75; }
+
+  /* ─── PACKING ─── */
+  .packing-categories { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+
+  .pack-category {
+    background: white;
+    border: 1px solid var(--mist);
+    border-radius: 4px;
+    padding: 20px;
+  }
+
+  .pack-cat-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700;
+    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .pack-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--mist);
+    font-size: 0.88rem;
+  }
+  .pack-item:last-of-type { border-bottom: none; }
+
+  .pack-item input[type="checkbox"] {
+    accent-color: var(--heather);
+    width: 15px; height: 15px;
+    cursor: pointer; flex-shrink: 0;
+  }
+
+  .pack-item label {
+    flex: 1; cursor: pointer;
+    transition: color 0.15s;
+  }
+  .pack-item input:checked + label { color: var(--stone); text-decoration: line-through; }
+
+  .pack-item .assigned {
+    font-size: 0.72rem;
+    color: var(--stone);
+    font-style: italic;
+  }
+
+  .pack-add-row {
+    display: flex; gap: 6px; margin-top: 12px;
+  }
+  .pack-add-input {
+    flex: 1;
+    border: 1px solid var(--mist); border-radius: 2px;
+    padding: 6px 10px; font-family: 'Source Serif 4', serif;
+    font-size: 0.82rem; outline: none;
+    background: var(--paper);
+  }
+  .pack-add-input:focus { border-color: var(--heather); }
+  .pack-add-btn {
+    background: var(--heather); color: white; border: none; border-radius: 2px;
+    padding: 6px 12px; cursor: pointer; font-size: 0.8rem;
+    transition: background 0.2s;
+  }
+  .pack-add-btn:hover { background: #8f5c80; }
+
+  /* ─── BUDGET ─── */
+  .budget-summary {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px; margin-bottom: 36px;
+  }
+
+  .budget-card {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 20px;
+    border-radius: 4px;
+  }
+  .budget-card.accent { background: var(--heather); }
+  .budget-card.light { background: white; color: var(--ink); border: 1px solid var(--mist); }
+
+  .budget-card-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.65; margin-bottom: 6px; }
+  .budget-card-value { font-family: 'Playfair Display', serif; font-size: 1.8rem; }
+
+  .expenses-table { width: 100%; border-collapse: collapse; }
+  .expenses-table th {
+    text-align: left; padding: 10px 12px;
+    font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--stone); border-bottom: 2px solid var(--mist);
+    font-weight: 400;
+  }
+  .expenses-table td {
+    padding: 10px 12px;
+    font-size: 0.88rem;
+    border-bottom: 1px solid var(--mist);
+    vertical-align: middle;
+  }
+  .expenses-table tr:hover td { background: rgba(123,79,110,0.04); }
+
+  .expense-category {
+    display: inline-block;
+    padding: 2px 8px; border-radius: 20px;
+    font-size: 0.72rem; letter-spacing: 0.04em;
+    background: var(--mist); color: var(--stone);
+  }
+
+  .add-expense-row td { padding-top: 16px; }
+  .expense-input {
+    border: 1px solid var(--mist); border-radius: 2px;
+    padding: 6px 10px; font-family: 'Source Serif 4', serif;
+    font-size: 0.85rem; outline: none; width: 100%;
+    background: var(--paper);
+  }
+  .expense-input:focus { border-color: var(--heather); }
+
+  /* ─── NOTES ─── */
+  .notes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+
+  .note-card {
+    background: white; border: 1px solid var(--mist); border-radius: 4px;
+    padding: 20px; position: relative;
+    transition: box-shadow 0.2s;
+  }
+  .note-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+
+  .note-card-color-bar {
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    border-radius: 4px 4px 0 0;
+  }
+
+  .note-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; margin-bottom: 10px; margin-top: 8px;
+    border: none; width: 100%; outline: none;
+    background: transparent; color: var(--ink);
+  }
+
+  .note-body {
+    font-size: 0.85rem; color: var(--stone);
+    border: none; outline: none;
+    width: 100%; min-height: 80px; resize: vertical;
+    font-family: 'Source Serif 4', serif;
+    background: transparent; line-height: 1.65;
+    font-weight: 300;
+  }
+
+  .note-author { font-size: 0.72rem; color: var(--thistle); font-style: italic; margin-top: 10px; }
+  .note-delete { position: absolute; top: 14px; right: 14px; background: none; border: none; cursor: pointer; color: var(--mist); font-size: 1rem; transition: color 0.15s; }
+  .note-delete:hover { color: #a04040; }
+
+  .add-note-btn {
+    background: none; border: 1.5px dashed var(--thistle);
+    border-radius: 4px; padding: 20px;
+    text-align: center; cursor: pointer;
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.9rem; color: var(--stone);
+    transition: all 0.2s;
+  }
+  .add-note-btn:hover { border-color: var(--heather); color: var(--heather); background: rgba(123,79,110,0.04); }
+
+  /* ─── WEATHER ─── */
+  .weather-info {
+    background: linear-gradient(135deg, #1a2a3a 0%, #0d1b2a 100%);
+    color: var(--paper); border-radius: 6px;
+    padding: 32px; margin-bottom: 32px;
+    position: relative; overflow: hidden;
+  }
+  .weather-info::after {
+    content: '☁'; position: absolute;
+    right: 24px; top: 20px;
+    font-size: 5rem; opacity: 0.06;
+  }
+  .weather-info h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 8px; }
+  .weather-info p { color: rgba(245,240,232,0.65); font-size: 0.9rem; line-height: 1.7; font-weight: 300; }
+
+  .weather-tips { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+  .weather-tip {
+    background: white; border: 1px solid var(--mist);
+    border-radius: 4px; padding: 16px;
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .weather-tip-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .weather-tip-text { font-size: 0.85rem; color: var(--stone); font-weight: 300; line-height: 1.6; }
+  .weather-tip-text strong { color: var(--ink); font-weight: 600; display: block; margin-bottom: 2px; }
+
+  /* ─── TRANSPORT ─── */
+  .transport-timeline { position: relative; padding-left: 28px; }
+  .transport-timeline::before {
+    content: ''; position: absolute; left: 8px; top: 12px; bottom: 12px;
+    width: 2px; background: var(--mist);
+  }
+
+  .transport-stop {
+    position: relative; margin-bottom: 28px;
+  }
+  .transport-stop::before {
+    content: ''; position: absolute;
+    left: -24px; top: 8px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: white; border: 2px solid var(--heather);
+  }
+  .transport-stop.confirmed::before { background: var(--heather); }
+
+  .transport-stop-header { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; flex-wrap: wrap; }
+  .transport-stop-name { font-family: 'Playfair Display', serif; font-size: 1rem; }
+  .transport-stop-time { font-size: 0.8rem; color: var(--stone); }
+  .transport-badge {
+    font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 2px 8px; border-radius: 20px;
+    background: var(--heather); color: white;
+  }
+  .transport-badge.unconfirmed { background: var(--mist); color: var(--stone); }
+
+  .transport-stop-detail {
+    font-size: 0.83rem; color: var(--stone); font-weight: 300; line-height: 1.6;
+  }
+  .transport-stop-detail a { color: var(--heather); text-decoration: none; }
+  .transport-stop-detail a:hover { text-decoration: underline; }
+
+  /* ─── MODAL ─── */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(26,26,46,0.7);
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.25s;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+  .modal {
+    background: var(--paper);
+    border-radius: 4px;
+    padding: 32px;
+    max-width: 480px; width: 100%;
+    transform: translateY(20px);
+    transition: transform 0.25s;
+    max-height: 80vh; overflow-y: auto;
+  }
+  .modal-overlay.open .modal { transform: translateY(0); }
+
+  .modal h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 20px; }
+  .modal-field { margin-bottom: 16px; }
+  .modal-field label { display: block; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--stone); margin-bottom: 6px; }
+  .modal-field input, .modal-field select, .modal-field textarea {
+    width: 100%; border: 1px solid var(--mist); border-radius: 2px;
+    padding: 10px 12px; font-family: 'Source Serif 4', serif;
+    font-size: 0.9rem; outline: none; background: white; color: var(--ink);
+    resize: vertical;
+  }
+  .modal-field input:focus, .modal-field select:focus, .modal-field textarea:focus { border-color: var(--heather); }
+  .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 24px; }
+
+  /* ─── UTILS ─── */
+  .tag {
+    display: inline-block; padding: 3px 10px; border-radius: 20px;
+    font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .tag-travel { background: rgba(201,168,76,0.15); color: #a07820; }
+  .tag-edinburgh { background: rgba(123,79,110,0.12); color: var(--heather); }
+  .tag-day-trip { background: rgba(42,74,110,0.12); color: #2a4a6e; }
+  .tag-highlands { background: rgba(61,90,62,0.12); color: var(--moss); }
+
+  .divider { border: none; border-top: 1px solid var(--mist); margin: 32px 0; }
+
+  /* ─── TRAIN BANNER ─── */
+  .train-banner {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 20px 24px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .train-banner-icon { font-size: 1.8rem; }
+  .train-banner-text { flex: 1; }
+  .train-banner-text strong { font-family: 'Playfair Display', serif; font-size: 1rem; display: block; margin-bottom: 2px; }
+  .train-banner-text span { font-size: 0.82rem; color: rgba(245,240,232,0.6); }
+  .train-banner-badge {
+    background: var(--moss); color: white;
+    font-size: 0.72rem; padding: 4px 12px; border-radius: 20px;
+    letter-spacing: 0.05em; text-transform: uppercase;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .hero-title { font-size: 2.8rem; }
+    .section { padding: 40px 16px; }
+    .section-heading { font-size: 1.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── HERO ─── -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-tartan"></div>
+  <div class="hero-particles" id="particles"></div>
+
+  <div class="hero-mountains" aria-hidden="true">
+    <svg viewBox="0 0 1440 220" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="0,220 200,80 320,150 480,40 600,120 720,60 860,140 1000,30 1140,110 1280,50 1440,90 1440,220" fill="rgba(26,26,46,0.85)"/>
+      <polygon points="0,220 160,120 280,180 420,90 560,160 700,100 820,170 960,70 1080,130 1220,80 1360,150 1440,120 1440,220" fill="rgba(13,27,42,0.9)"/>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Family Adventure · June 2026</div>
+    <h1 class="hero-title">Scotland<br><em>awaits.</em></h1>
+    <p class="hero-subtitle">A wee trip to remember — plan it together.</p>
+    <div class="hero-cta">
+      <a href="#planner" class="btn-primary" onclick="showSection('itinerary')">Start Planning</a>
+      <a href="#planner" class="btn-ghost" onclick="showSection('travellers')">Meet the Crew</a>
+    </div>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">
+    <div class="scroll-hint-line"></div>
+    <span>Scroll</span>
+  </div>
+</div>
+
+<!-- ─── TABS ─── -->
+<div class="tabs-bar" id="planner">
+  <button class="tab-btn active" onclick="showSection('itinerary', this)">📅 Itinerary</button>
+  <button class="tab-btn" onclick="showSection('travellers', this)">👥 Travellers</button>
+  <button class="tab-btn" onclick="showSection('transport', this)">🚂 Transport</button>
+  <button class="tab-btn" onclick="showSection('packing', this)">🎒 Packing</button>
+  <button class="tab-btn" onclick="showSection('budget', this)">💷 Budget</button>
+  <button class="tab-btn" onclick="showSection('weather', this)">🌦 Weather</button>
+  <button class="tab-btn" onclick="showSection('notes', this)">📝 Notes</button>
+</div>
+
+<!-- ─────────────────────────────────────────────── -->
+<!-- ITINERARY -->
+<!-- ─────────────────────────────────────────────── -->
+<section class="section active" id="itinerary">
+  <h2 class="section-heading">The <em>Itinerary</em></h2>
+  <p class="section-sub">Plan each day together. Tap an activity title or notes to edit. Vote on ideas you love (or don't!).</p>
+
+  <!-- Travel Framework Summary -->
+  <div style="background:var(--ink);color:var(--paper);border-radius:4px;padding:24px 28px;margin-bottom:36px;">
+    <div style="font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--thistle);margin-bottom:14px;">✈️ Trip Framework — 2 bases, no packing every night</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;">
+      <div><div style="font-family:'Playfair Display',serif;font-size:1rem;margin-bottom:3px;">Day 0</div><div style="font-size:0.8rem;color:rgba(245,240,232,0.6);font-weight:300;line-height:1.6;">Birmingham → Edinburgh<br>Direct train · ~4h 30m</div></div>
+      <div><div style="font-family:'Playfair Display',serif;font-size:1rem;margin-bottom:3px;">Days 1–2</div><div style="font-size:0.8rem;color:rgba(245,240,232,0.6);font-weight:300;line-height:1.6;">Base: Edinburgh<br>Day trip to St Andrews</div></div>
+      <div><div style="font-family:'Playfair Display',serif;font-size:1rem;margin-bottom:3px;">Days 3–4</div><div style="font-size:0.8rem;color:rgba(245,240,232,0.6);font-weight:300;line-height:1.6;">Base: Glencoe / Fort William<br>Highlands exploration</div></div>
+      <div><div style="font-family:'Playfair Display',serif;font-size:1rem;margin-bottom:3px;">Day 5</div><div style="font-size:0.8rem;color:rgba(245,240,232,0.6);font-weight:300;line-height:1.6;">Drive back to Edinburgh<br>via Stirling Castle</div></div>
+      <div><div style="font-family:'Playfair Display',serif;font-size:1rem;margin-bottom:3px;">Day 6</div><div style="font-size:0.8rem;color:rgba(245,240,232,0.6);font-weight:300;line-height:1.6;">Edinburgh → Birmingham<br>Direct train · ~4h 30m</div></div>
+    </div>
+  </div>
+
+  <div id="days-container"></div>
+  <button class="add-day-btn" onclick="addDay()">＋ Add another day</button>
+</section>
+
+<!-- ─────────────────────────────────────────────── -->
+<!-- TRAVELLERS -->
+<!-- ─────────────────────────────────────────────── -->
+<section class="section" id="travellers">
+  <h2 class="section-heading">The <em>Crew</em></h2>
+  <p class="section-sub">Your family of four. Click the notes area on any card to add preferences, dietary needs, or anything useful.</p>
+
+  <div class="travellers-grid" id="travellers-grid">
+    <!-- seeded by JS -->
+  </div>
+
+  <hr class="divider">
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:12px;">Trip Details</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;">
+    <div>
+      <label style="font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:6px;">Departure Date</label>
+      <input type="date" id="dep-date" style="border:1px solid var(--mist);padding:8px 12px;font-family:'Source Serif 4',serif;font-size:0.9rem;outline:none;background:white;border-radius:2px;width:100%;" oninput="regenerateDays()">
+    </div>
+    <div>
+      <label style="font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:6px;">Return Date</label>
+      <input type="date" id="ret-date" style="border:1px solid var(--mist);padding:8px 12px;font-family:'Source Serif 4',serif;font-size:0.9rem;outline:none;background:white;border-radius:2px;width:100%;" oninput="regenerateDays()">
+    </div>
+    <div>
+      <label style="font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);display:block;margin-bottom:6px;">Base City</label>
+      <input type="text" placeholder="e.g. Edinburgh" style="border:1px solid var(--mist);padding:8px 12px;font-family:'Source Serif 4',serif;font-size:0.9rem;outline:none;background:white;border-radius:2px;width:100%;">
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────── -->
+<!-- TRANSPORT -->
+<!-- ─────────────────────────────────────────────── -->
+<section class="section" id="transport">
+  <h2 class="section-heading"><em>Getting</em> There</h2>
+  <p class="section-sub">Your confirmed train journey plus any onward travel to plan.</p>
+
+  <div class="train-banner">
+    <div class="train-banner-icon">🚂</div>
+    <div class="train-banner-text">
+      <strong>Birmingham New Street → Edinburgh Waverley — Confirmed ✓</strong>
+      <span>Direct service · ~4h 30m each way · Update times below</span>
+    </div>
+    <div class="train-banner-badge">Booked</div>
+  </div>
+
+  <div class="transport-timeline" id="transport-timeline">
+    <!-- seeded by JS -->
+  </div>
+
+  <button class="add-day-btn" style="margin-top:4px;" onclick="addTransportStop()">＋ Add transport stop</button>
+  <hr class="divider">
+
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:16px;">Useful Links</h3>
+  <div style="display:flex;flex-wrap:wrap;gap:10px;">
+    <a href="https://www.scotrail.co.uk" target="_blank" class="btn-ghost" style="font-size:0.82rem;padding:10px 18px;color:var(--ink);border-color:var(--mist);">ScotRail</a>
+    <a href="https://www.nationalrail.co.uk" target="_blank" class="btn-ghost" style="font-size:0.82rem;padding:10px 18px;color:var(--ink);border-color:var(--mist);">National Rail</a>
+    <a href="https://www.citylink.co.uk" target="_blank" class="btn-ghost" style="font-size:0.82rem;padding:10px 18px;color:var(--ink);border-color:var(--mist);">Scottish Citylink</a>
+    <a href="https://www.visitscotland.com" target="_blank" class="btn-ghost" style="font-size:0.82rem;padding:10px 18px;color:var(--ink);border-color:var(--mist);">VisitScotland</a>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────── -->
+<!-- PACKING -->
+<!-- ─────────────────────────────────────────────── -->
+<section class="section" id="packing">
+  <h2 class="section-heading"><em>Packing</em> List</h2>
+  <p class="section-sub">Tick items off as you pack. Add your own to any category.</p>
+
+  <div class="packing-categories" id="packing-categories">
+    <!-- seeded by JS -->
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────── -->
+<!-- BUDGET -->
+<!-- ─────────────────────────────────────────────── -->
+<section class="section" id="budget">
+  <h2 class="section-heading">The <em>Budget</em></h2>
+  <p class="section-sub">Track shared and individual costs. Split fairly among the family.</p>
+
+  <div class="budget-summary">
+    <div class="budget-card">
+      <div class="budget-card-label">Total Budget</div>
+      <div class="budget-card-value">£<span id="total-budget-val" contenteditable="true" oninput="updateBudgetCard()" style="outline:none;border-bottom:1px dashed rgba(245,240,232,0.3);">2,000</span></div>
+    </div>
+    <div class="budget-card accent">
+      <div class="budget-card-label">Spent So Far</div>
+      <div class="budget-card-value">£<span id="spent-val">0</span></div>
+    </div>
+    <div class="budget-card light">
+      <div class="budget-card-label">Remaining</div>
+      <div class="budget-card-value" id="remaining-val">£2,000</div>
+    </div>
+    <div class="budget-card light">
+      <div class="budget-card-label">Per Person</div>
+      <div class="budget-card-value" id="per-person-val">£500</div>
+    </div>
+  </div>
+
+  <table class="expenses-table">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Amount</th>
+        <th>Paid by</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="expenses-body">
+      <tr class="add-expense-row">
+        <td><input class="expense-input" id="exp-desc" placeholder="e.g. Airbnb Edinburgh"></td>
+        <td>
+          <select class="expense-input" id="exp-cat">
+            <option>Accommodation</option>
+            <option>Food & Drink</option>
+            <option>Transport</option>
+            <option>Activities</option>
+            <option>Shopping</option>
+            <option>Other</option>
+          </select>
+        </td>
+        <td><input class="expense-input" id="exp-amount" type="number" placeholder="0.00" style="width:90px;"></td>
+        <td>
+          <select class="expense-input" id="exp-paidby">
+            <option>You</option>
+            <option>Mum</option>
+            <option>Dad</option>
+            <option>Sister</option>
+            <option>Shared</option>
+          </select>
+        </td>
+        <td><button class="btn-primary" style="padding:7px 14px;font-size:0.8rem;" onclick="addExpense()">Add</button></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ─────────────────────────────────────────────── -->
+<!-- WEATHER -->
+<!-- ─────────────────────────────────────────────── -->
+<section class="section" id="weather">
+  <h2 class="section-heading">Weather <em>&amp; Kit</em></h2>
+  <p class="section-sub">What to expect in Scotland in June — and how to prepare.</p>
+
+  <div class="weather-info">
+    <h3>Scotland in June ☁️ 🌦 🌤</h3>
+    <p>June is one of Scotland's better months — long daylight hours (up to 17–18 hrs in Edinburgh), temperatures typically between <strong>10–18°C</strong>, but expect the unexpected. Rain can arrive anytime, particularly in the Highlands. Wind picks up on high ground and near the coast. Pack for all four seasons in a single day — it's a Scottish rite of passage.</p>
+  </div>
+
+  <div class="weather-tips">
+    <div class="weather-tip">
+      <div class="weather-tip-icon">🌡</div>
+      <div class="weather-tip-text"><strong>Temperature</strong>10–18°C average. Evenings cooler. Pack layers — a light jumper even in sunshine.</div>
+    </div>
+    <div class="weather-tip">
+      <div class="weather-tip-icon">🌧</div>
+      <div class="weather-tip-text"><strong>Rainfall</strong>Edinburgh is drier than the west. Expect ~8–10 rainy days in the month. A compact waterproof is essential.</div>
+    </div>
+    <div class="weather-tip">
+      <div class="weather-tip-icon">☀</div>
+      <div class="weather-tip-text"><strong>Daylight</strong>Sunrise around 4:30am, sunset ~10pm near midsummer. Brilliant for long evening walks.</div>
+    </div>
+    <div class="weather-tip">
+      <div class="weather-tip-icon">🦟</div>
+      <div class="weather-tip-text"><strong>Midges</strong>Tiny biting insects, active June–August, especially near water and at dusk. Bring repellent if venturing outdoors.</div>
+    </div>
+    <div class="weather-tip">
+      <div class="weather-tip-icon">👟</div>
+      <div class="weather-tip-text"><strong>Footwear</strong>Waterproof walking shoes/boots recommended. City cobblestones get slippery in rain.</div>
+    </div>
+    <div class="weather-tip">
+      <div class="weather-tip-icon">🔆</div>
+      <div class="weather-tip-text"><strong>UV</strong>Scotland's latitude means strong UV even on overcast days — SPF sunscreen still recommended.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────── -->
+<!-- NOTES -->
+<!-- ─────────────────────────────────────────────── -->
+<section class="section" id="notes">
+  <h2 class="section-heading">Ideas &amp; <em>Notes</em></h2>
+  <p class="section-sub">A shared space for wishes, restaurant finds, things to research. Anyone can add a note.</p>
+
+  <div class="notes-grid" id="notes-grid">
+    <!-- seeded by JS -->
+    <button class="add-note-btn" onclick="openAddNoteModal()">＋ Add a note</button>
+  </div>
+</section>
+
+<!-- ─── MODAL ─── -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOnOverlay(event)">
+  <div class="modal" id="modal">
+    <h3 id="modal-title">Add Item</h3>
+    <div id="modal-body"></div>
+    <div class="modal-actions">
+      <button class="btn-ghost" style="color:var(--ink);border-color:var(--mist);" onclick="closeModal()">Cancel</button>
+      <button class="btn-primary" id="modal-confirm" onclick="">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── STATE ───────────────────────────────────────────────
+let days = [
+  { id:0, label:'Day 0 — Travel Day', tag:'travel', activities:[
+    { id:'a00', icon:'🚂', title:'Morning train: Birmingham → Edinburgh', detail:'Direct service · ~4h 30m · Arrive into Edinburgh Waverley', votes:{yes:0,no:0} },
+    { id:'a01', icon:'🏨', title:'Check in to Edinburgh accommodation', detail:'Drop bags, freshen up, get your bearings', votes:{yes:0,no:0} },
+    { id:'a02', icon:'🍽', title:'Evening meal in Edinburgh', detail:'Explore the Old Town for dinner options', votes:{yes:0,no:0} }
+  ]},
+  { id:1, label:'Day 1 — Arrival & Edinburgh', tag:'edinburgh', activities:[
+    { id:'a1', icon:'🏰', title:'Edinburgh Castle', detail:'Open from 9:30am · Allow 2–3 hrs · Book tickets in advance to skip queues', votes:{yes:0,no:0} },
+    { id:'a2', icon:'🚶', title:'Walk the Royal Mile', detail:'From Castle down to Holyrood Palace · Plenty of shops and closes to explore', votes:{yes:0,no:0} },
+    { id:'a3', icon:'🌿', title:'Princes Street Gardens', detail:'Relax below the castle · Scott Monument worth a look', votes:{yes:0,no:0} },
+    { id:'a4', icon:'🥃', title:'Scotch Whisky Experience (optional)', detail:'Royal Mile · Book in advance · Great intro to Scotch', votes:{yes:0,no:0} }
+  ]},
+  { id:2, label:'Day 2 — St Andrews Day Trip', tag:'day-trip', activities:[
+    { id:'a5', icon:'🌉', title:'Drive across the Forth Bridges', detail:'~1.5 hrs from Edinburgh · Iconic view of the Forth Rail Bridge', votes:{yes:0,no:0} },
+    { id:'a6', icon:'🐟', title:'Anstruther & Crail fishing villages', detail:'East Neuk of Fife · Try the famous Anstruther fish and chips', votes:{yes:0,no:0} },
+    { id:'a7', icon:'⛪', title:'St Andrews — castle & cathedral ruins', detail:'Historic ruins overlooking the sea · Allow 1–2 hrs', votes:{yes:0,no:0} },
+    { id:'a8', icon:'🏖', title:'St Andrews beach walk', detail:'West Sands beach — long, stunning stretch of sand', votes:{yes:0,no:0} },
+    { id:'a9', icon:'🏨', title:'Return to Edinburgh for night 2', detail:'~1.5 hrs drive back', votes:{yes:0,no:0} }
+  ]},
+  { id:3, label:'Day 3 — Edinburgh → Highlands', tag:'highlands', activities:[
+    { id:'a10', icon:'🚗', title:'Pick up rental car', detail:'Early morning pickup from Edinburgh city centre or airport', votes:{yes:0,no:0} },
+    { id:'a11', icon:'🏰', title:'Stirling — drive through / brief stop', detail:'En route west · Stirling Castle visible from the road if not stopping', votes:{yes:0,no:0} },
+    { id:'a12', icon:'🏞', title:'Loch Lomond scenic stop', detail:'~1 hr from Stirling · Balloch or Luss village for photos', votes:{yes:0,no:0} },
+    { id:'a13', icon:'🌄', title:'Rannoch Moor', detail:'Dramatic, desolate moorland · One of Scotland\'s most iconic landscapes', votes:{yes:0,no:0} },
+    { id:'a14', icon:'⛰', title:'Arrive Glencoe / Fort William', detail:'~3 hrs total from Edinburgh · Check in to Highland accommodation', votes:{yes:0,no:0} }
+  ]},
+  { id:4, label:'Day 4 — Highlands Exploration', tag:'highlands', activities:[
+    { id:'a15', icon:'🥾', title:'Gentle walks in Glencoe valley', detail:'Many well-marked trails · The Lost Valley (Coire Gabhail) is stunning', votes:{yes:0,no:0} },
+    { id:'a16', icon:'🚂', title:'Glenfinnan Viaduct (optional)', detail:'~30 min from Fort William · The Harry Potter bridge · Check Jacobite steam train times', votes:{yes:0,no:0} },
+    { id:'a17', icon:'🏔', title:'Ben Nevis viewpoint', detail:'UK\'s highest mountain · Even just the visitor centre walk has great views', votes:{yes:0,no:0} },
+    { id:'a18', icon:'🏨', title:'Second night in Glencoe / Fort William', detail:'No hotel change tonight — enjoy the slower pace', votes:{yes:0,no:0} }
+  ]},
+  { id:5, label:'Day 5 — Return to Edinburgh', tag:'edinburgh', activities:[
+    { id:'a19', icon:'🚗', title:'Drive back via Stirling', detail:'~3 hrs · Take the A82 south along Loch Lomond for views', votes:{yes:0,no:0} },
+    { id:'a20', icon:'🏰', title:'Stirling Castle (if time allows)', detail:'One of Scotland\'s finest castles · Allow 2 hrs', votes:{yes:0,no:0} },
+    { id:'a21', icon:'📌', title:'Edinburgh — TBD', detail:'Pending — add your plans for the final Edinburgh evening', votes:{yes:0,no:0} }
+  ]},
+  { id:6, label:'Day 6 — Return Home', tag:'travel', activities:[
+    { id:'a22', icon:'🚂', title:'Trains: Edinburgh → Birmingham', detail:'Direct service · ~4h 30m · Edinburgh Waverley', votes:{yes:0,no:0} }
+  ]}
+];
+
+let dayCounter = 7;
+let actCounter = 100;
+let expenses = [];
+let expTotal = 0;
+
+const travellers = [
+  { emoji:'🧑', name:'You', role:'Trip Organiser', notes:'' },
+  { emoji:'👩', name:'Mum', role:'Traveller', notes:'' },
+  { emoji:'👨', name:'Dad', role:'Traveller', notes:'' },
+  { emoji:'👧', name:'Sister', role:'Traveller', notes:'' }
+];
+
+const packingData = [
+  { title:'🌧 Weather', items:['Waterproof jacket','Compact umbrella','Warm layers / fleece','Light scarf','Sunscreen SPF 30+','Sunglasses'] },
+  { title:'🥾 Footwear', items:['Waterproof walking shoes','Comfortable city shoes','Thick socks (x5 pairs)','Flip-flops / slippers'] },
+  { title:'📄 Documents', items:['Train tickets (printed + app)','Booking confirmations','Travel insurance details','NHS / health cards','Emergency contact list'] },
+  { title:'💊 Health', items:['Midge repellent (essential!)', 'Paracetamol / ibuprofen','Plasters / blister pads','Any prescription medication','Hand sanitiser'] },
+  { title:'📱 Tech', items:['Phone chargers + cables','Portable power bank','Camera / spare battery','UK plug adapters (if needed)','Headphones'] },
+  { title:'🎒 Extras', items:['Reusable water bottles','Day backpack','Snacks for train','Small cash (Scottish notes fine)','Spare bags / totes'] }
+];
+
+const transportStops = [
+  { id:'t1', name:'Birmingham New Street', time:'TBC', badge:'Day 0 · Depart', confirmed:true, detail:'Direct service to Edinburgh · ~4h 30m · Fill in exact departure time once confirmed. <a href="https://www.nationalrail.co.uk" target="_blank">National Rail →</a>' },
+  { id:'t2', name:'Edinburgh Waverley', time:'TBC', badge:'Day 0 · Arrive', confirmed:true, detail:'Right in the heart of the city. Trams, buses and taxis all nearby. <a href="https://www.networkrail.co.uk/stations/edinburgh" target="_blank">Station info →</a>' },
+  { id:'t3', name:'Car hire pickup (Day 3)', time:'Morning', badge:'Day 3 · Car', confirmed:false, detail:'Pick up rental car for the Highlands leg. Edinburgh city centre or airport. <a href="https://www.rentalcars.com" target="_blank">Compare rentals →</a>' },
+  { id:'t4', name:'Return car hire (Day 5)', time:'Evening', badge:'Day 5 · Car return', confirmed:false, detail:'Return car in Edinburgh before Day 6 train home.' },
+  { id:'t5', name:'Edinburgh Waverley', time:'TBC', badge:'Day 6 · Depart', confirmed:false, detail:'Return journey to Birmingham · ~4h 30m · Confirm time once booked.' },
+  { id:'t6', name:'Birmingham New Street', time:'TBC', badge:'Day 6 · Arrive', confirmed:false, detail:'Home safely! 🏠' }
+];
+
+let transportData = [...transportStops];
+
+// ─── INIT ─────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  spawnParticles();
+  renderTravellers();
+  renderDays();
+  renderPacking();
+  renderTransport();
+  seedNotes();
+  showSection('itinerary');
+
+  // Scroll to tabs on hero CTA
+  document.querySelectorAll('[href="#planner"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      document.getElementById('planner').scrollIntoView({ behavior:'smooth' });
+    });
+  });
+});
+
+// ─── PARTICLES ───────────────────────────────────────
+function spawnParticles() {
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 60; i++) {
+    const s = document.createElement('span');
+    s.style.left = Math.random() * 100 + '%';
+    s.style.top = Math.random() * 100 + '%';
+    s.style.animationDelay = (Math.random() * 4) + 's';
+    s.style.animationDuration = (3 + Math.random() * 4) + 's';
+    container.appendChild(s);
+  }
+}
+
+// ─── TABS ─────────────────────────────────────────────
+function showSection(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if (btn) btn.classList.add('active');
+  else {
+    const allBtns = document.querySelectorAll('.tab-btn');
+    allBtns.forEach(b => { if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(id)) b.classList.add('active'); });
+  }
+}
+
+// ─── TRAVELLERS ───────────────────────────────────────
+function renderTravellers() {
+  const grid = document.getElementById('travellers-grid');
+  // preserve add button if present
+  grid.innerHTML = '';
+  travellers.forEach((t, i) => grid.appendChild(buildTravellerCard(t, i)));
+  // add-traveller button
+  const addBtn = document.createElement('button');
+  addBtn.className = 'add-traveller';
+  addBtn.innerHTML = '＋ Add traveller';
+  addBtn.onclick = () => openAddTravellerModal();
+  grid.appendChild(addBtn);
+}
+
+function buildTravellerCard(t, i) {
+  const card = document.createElement('div');
+  card.className = 'traveller-card';
+  card.id = 'tc-' + i;
+  card.innerHTML = `
+    <button onclick="deleteTraveller(${i})" style="position:absolute;top:10px;right:10px;background:none;border:none;cursor:pointer;color:var(--mist);font-size:0.85rem;transition:color 0.15s;" onmouseover="this.style.color='#a04040'" onmouseout="this.style.color='var(--mist)'" title="Remove">✕</button>
+    <div class="traveller-avatar" style="cursor:pointer;position:relative;" onclick="cycleTravellerEmoji(${i})" title="Click to change emoji">${t.emoji}<span style="position:absolute;bottom:0;right:0;font-size:0.6rem;background:var(--heather);color:white;border-radius:50%;width:16px;height:16px;display:flex;align-items:center;justify-content:center;">✎</span></div>
+    <div class="traveller-name" contenteditable="true" style="outline:none;border-bottom:1px solid transparent;transition:border 0.2s;" onfocus="this.style.borderBottomColor='var(--heather)'" onblur="this.style.borderBottomColor='transparent';updateTraveller(${i},'name',this.innerText)">${t.name}</div>
+    <div class="traveller-role" contenteditable="true" style="outline:none;" onblur="updateTraveller(${i},'role',this.innerText)">${t.role}</div>
+    <div class="traveller-notes" contenteditable="true"
+         data-placeholder="Add preferences, dietary needs…"
+         oninput="updateTraveller(${i},'notes',this.innerText)">${t.notes}</div>
+  `;
+  return card;
+}
+
+const travellerEmojis = ['🧑','👩','👨','👧','👦','👴','👵','🧒','🧔','👩‍🦱','👩‍🦳','🧑‍🦯'];
+function cycleTravellerEmoji(i) {
+  const cur = travellerEmojis.indexOf(travellers[i].emoji);
+  travellers[i].emoji = travellerEmojis[(cur + 1) % travellerEmojis.length];
+  renderTravellers();
+}
+
+function updateTraveller(i, field, val) {
+  if (travellers[i]) travellers[i][field] = val;
+}
+
+function deleteTraveller(i) {
+  travellers.splice(i, 1);
+  renderTravellers();
+}
+
+function openAddTravellerModal() {
+  openModal('Add Traveller',
+    `<div class="modal-field"><label>Name</label><input id="new-t-name" placeholder="e.g. Grandma"></div>
+     <div class="modal-field"><label>Role</label><input id="new-t-role" placeholder="e.g. Traveller"></div>`,
+    () => {
+      const name = document.getElementById('new-t-name').value.trim() || 'New Traveller';
+      const role = document.getElementById('new-t-role').value.trim() || 'Traveller';
+      travellers.push({ emoji:'🧑', name, role, notes:'' });
+      renderTravellers();
+      closeModal();
+    }
+  );
+}
+
+// ─── DAYS / ITINERARY ────────────────────────────────
+function renderDays() {
+  const container = document.getElementById('days-container');
+  container.innerHTML = '';
+  days.forEach(day => container.appendChild(buildDayBlock(day)));
+}
+
+function buildDayBlock(day) {
+  const block = document.createElement('div');
+  block.className = 'day-block';
+  block.id = 'day-' + day.id;
+
+  const tagLabels = { travel:'🚂 Travel', edinburgh:'🏙 Edinburgh', 'day-trip':'🚗 Day Trip', highlands:'⛰ Highlands' };
+  const tagHTML = day.tag ? `<span class="tag tag-${day.tag}" style="font-size:0.7rem;padding:2px 9px;border-radius:20px;letter-spacing:0.04em;">${tagLabels[day.tag] || day.tag}</span>` : '';
+
+  block.innerHTML = `
+    <div class="day-header">
+      <span class="day-label" contenteditable="true"
+            oninput="updateDayLabel(${day.id}, this.innerText)">${day.label}</span>
+      ${tagHTML}
+      <span class="day-date" id="day-date-${day.id}"></span>
+    </div>
+    <div class="day-activities" id="activities-${day.id}">
+      ${day.activities.map(a => buildActivityHTML(a, day.id)).join('')}
+    </div>
+    <button class="add-activity-btn" onclick="addActivity(${day.id})">＋ Add activity</button>
+  `;
+
+  return block;
+}
+
+function buildActivityHTML(a, dayId) {
+  return `
+    <div class="activity-item" id="act-${a.id}">
+      <span class="activity-icon">${a.icon}</span>
+      <div class="activity-content">
+        <div class="activity-title" contenteditable="true"
+             oninput="updateActivity('${a.id}','title',this.innerText)">${a.title}</div>
+        <div class="activity-detail" contenteditable="true"
+             oninput="updateActivity('${a.id}','detail',this.innerText)">${a.detail}</div>
+        <div class="activity-votes">
+          <button class="vote-btn yes" onclick="vote('${a.id}','yes',this)">👍 <span id="yes-${a.id}">${a.votes.yes}</span></button>
+          <button class="vote-btn no"  onclick="vote('${a.id}','no',this)">👎 <span id="no-${a.id}">${a.votes.no}</span></button>
+        </div>
+      </div>
+      <button class="delete-btn" onclick="deleteActivity('${a.id}',${dayId})" title="Remove">✕</button>
+    </div>
+  `;
+}
+
+function addActivity(dayId) {
+  const day = days.find(d => d.id === dayId);
+  if (!day) return;
+  const newA = { id:'a'+actCounter++, icon:'📌', title:'New activity', detail:'Add details…', votes:{yes:0,no:0} };
+  day.activities.push(newA);
+  const container = document.getElementById('activities-' + dayId);
+  container.insertAdjacentHTML('beforeend', buildActivityHTML(newA, dayId));
+}
+
+function deleteActivity(actId, dayId) {
+  const day = days.find(d => d.id === dayId);
+  if (day) day.activities = day.activities.filter(a => a.id !== actId);
+  const el = document.getElementById('act-' + actId);
+  if (el) { el.style.opacity='0'; el.style.transform='translateX(10px)'; setTimeout(()=>el.remove(),300); }
+}
+
+function updateActivity(actId, field, value) {
+  days.forEach(d => {
+    const a = d.activities.find(a => a.id === actId);
+    if (a) a[field] = value;
+  });
+}
+
+function updateDayLabel(dayId, label) {
+  const day = days.find(d => d.id === dayId);
+  if (day) day.label = label;
+}
+
+function vote(actId, type, btn) {
+  let a;
+  days.forEach(d => { const found = d.activities.find(x=>x.id===actId); if(found) a=found; });
+  if (!a) return;
+  a.votes[type]++;
+  document.getElementById(type + '-' + actId).innerText = a.votes[type];
+  btn.classList.add('active');
+  setTimeout(() => btn.classList.remove('active'), 1200);
+}
+
+function addDay() {
+  const newDay = { id: dayCounter++, label: 'Day ' + (days.length+1), activities: [] };
+  days.push(newDay);
+  const container = document.getElementById('days-container');
+  container.appendChild(buildDayBlock(newDay));
+  updateDayDates();
+}
+
+function regenerateDays() { updateDayDates(); }
+
+function updateDayDates() {
+  const dep = document.getElementById('dep-date')?.value;
+  if (!dep) return;
+  const base = new Date(dep);
+  days.forEach((day, i) => {
+    const d = new Date(base);
+    d.setDate(base.getDate() + i);
+    const el = document.getElementById('day-date-' + day.id);
+    if (el) el.textContent = d.toLocaleDateString('en-GB', {weekday:'long', day:'numeric', month:'long'});
+  });
+}
+
+// ─── PACKING ─────────────────────────────────────────
+let packCheckId = 0;
+
+function renderPacking() {
+  const container = document.getElementById('packing-categories');
+  container.innerHTML = '';
+  packingData.forEach((cat, ci) => container.appendChild(buildPackCategory(cat, ci)));
+  // add category button
+  const addCatBtn = document.createElement('button');
+  addCatBtn.className = 'add-traveller';
+  addCatBtn.style.cssText = 'align-self:start;margin-top:4px;';
+  addCatBtn.innerHTML = '＋ New category';
+  addCatBtn.onclick = openAddCategoryModal;
+  container.appendChild(addCatBtn);
+}
+
+function buildPackCategory(cat, ci) {
+  const div = document.createElement('div');
+  div.className = 'pack-category';
+  div.style.position = 'relative';
+  div.innerHTML = `
+    <div class="pack-cat-title">
+      <span contenteditable="true" style="outline:none;flex:1;" onblur="packingData[${ci}].title=this.innerText">${cat.title}</span>
+      <button onclick="deletePackCategory(${ci})" title="Delete category" style="background:none;border:none;cursor:pointer;color:var(--mist);font-size:0.8rem;margin-left:auto;transition:color 0.15s;" onmouseover="this.style.color='#a04040'" onmouseout="this.style.color='var(--mist)'">✕</button>
+    </div>
+    <div id="pack-items-${ci}">
+      ${cat.items.map(item => packItemHTML(ci, item)).join('')}
+    </div>
+    <div class="pack-add-row">
+      <input class="pack-add-input" id="pack-input-${ci}" placeholder="Add item…" onkeydown="if(event.key==='Enter')addPackItem(${ci})">
+      <button class="pack-add-btn" onclick="addPackItem(${ci})">+</button>
+    </div>
+  `;
+  return div;
+}
+
+function packItemHTML(ci, item) {
+  const id = 'pack-' + packCheckId++;
+  return `<div class="pack-item" id="${id}-row">
+    <input type="checkbox" id="${id}">
+    <label for="${id}" style="flex:1;">${item}</label>
+    <button onclick="deletePackItem(${ci},'${item}','${id}-row')" style="background:none;border:none;cursor:pointer;color:var(--mist);font-size:0.75rem;padding:0 2px;transition:color 0.15s;" onmouseover="this.style.color='#a04040'" onmouseout="this.style.color='var(--mist)'" title="Remove">✕</button>
+  </div>`;
+}
+
+function deletePackItem(ci, item, rowId) {
+  packingData[ci].items = packingData[ci].items.filter(i => i !== item);
+  const el = document.getElementById(rowId);
+  if (el) { el.style.opacity='0'; setTimeout(()=>el.remove(),200); }
+}
+
+function deletePackCategory(ci) {
+  packingData.splice(ci, 1);
+  renderPacking();
+}
+
+function addPackItem(ci) {
+  const input = document.getElementById('pack-input-' + ci);
+  const val = input.value.trim();
+  if (!val) return;
+  packingData[ci].items.push(val);
+  document.getElementById('pack-items-' + ci).insertAdjacentHTML('beforeend', packItemHTML(ci, val));
+  input.value = '';
+}
+
+function openAddCategoryModal() {
+  openModal('New Packing Category',
+    `<div class="modal-field"><label>Category name</label><input id="new-cat-name" placeholder="e.g. 🎿 Activities"></div>`,
+    () => {
+      const name = document.getElementById('new-cat-name').value.trim() || 'New Category';
+      packingData.push({ title: name, items: [] });
+      renderPacking();
+      closeModal();
+    }
+  );
+}
+
+// ─── TRANSPORT ───────────────────────────────────────
+function renderTransport() {
+  const container = document.getElementById('transport-timeline');
+  container.innerHTML = '';
+  transportData.forEach(stop => container.appendChild(buildStopEl(stop)));
+}
+
+function buildStopEl(stop) {
+  const div = document.createElement('div');
+  div.className = 'transport-stop' + (stop.confirmed ? ' confirmed' : '');
+  div.id = 'stop-' + stop.id;
+  div.innerHTML = `
+    <div class="transport-stop-header">
+      <span class="transport-stop-name" contenteditable="true" style="outline:none;border-bottom:1px solid transparent;transition:border 0.15s;" onfocus="this.style.borderBottomColor='var(--heather)'" onblur="this.style.borderBottomColor='transparent';updateStop('${stop.id}','name',this.innerText)">${stop.name}</span>
+      <span class="transport-stop-time" contenteditable="true"
+            oninput="updateStop('${stop.id}','time',this.innerText)">${stop.time}</span>
+      <span class="transport-badge ${stop.confirmed ? '' : 'unconfirmed'}" contenteditable="true" style="outline:none;" oninput="updateStop('${stop.id}','badge',this.innerText)">${stop.badge}</span>
+      <button onclick="toggleConfirmed('${stop.id}')" title="${stop.confirmed ? 'Mark unconfirmed' : 'Mark confirmed'}"
+        style="background:${stop.confirmed ? 'var(--moss)' : 'none'};border:1px solid ${stop.confirmed ? 'var(--moss)' : 'var(--mist)'};color:${stop.confirmed ? 'white' : 'var(--stone)'};border-radius:20px;padding:2px 8px;font-size:0.7rem;cursor:pointer;transition:all 0.2s;font-family:'Source Serif 4',serif;">
+        ${stop.confirmed ? '✓ Confirmed' : 'Confirm?'}
+      </button>
+      <button onclick="deleteStop('${stop.id}')" title="Delete stop" style="background:none;border:none;cursor:pointer;color:var(--mist);font-size:0.85rem;transition:color 0.15s;margin-left:4px;" onmouseover="this.style.color='#a04040'" onmouseout="this.style.color='var(--mist)'">✕</button>
+    </div>
+    <div class="transport-stop-detail" contenteditable="true" style="outline:none;" onblur="updateStop('${stop.id}','detail',this.innerHTML)">${stop.detail}</div>
+  `;
+  return div;
+}
+
+function updateStop(id, field, val) {
+  const s = transportData.find(s => s.id === id);
+  if (s) s[field] = val;
+}
+
+function toggleConfirmed(id) {
+  const s = transportData.find(s => s.id === id);
+  if (!s) return;
+  s.confirmed = !s.confirmed;
+  renderTransport();
+}
+
+function deleteStop(id) {
+  transportData = transportData.filter(s => s.id !== id);
+  const el = document.getElementById('stop-' + id);
+  if (el) { el.style.opacity = '0'; setTimeout(() => el.remove(), 250); }
+}
+
+function addTransportStop() {
+  openModal('Add Transport Stop',
+    `<div class="modal-field"><label>Stop name</label><input id="new-s-name" placeholder="e.g. Glasgow Queen Street"></div>
+     <div class="modal-field"><label>Time / Date</label><input id="new-s-time" placeholder="e.g. 09:45 · Day 3"></div>
+     <div class="modal-field"><label>Label / Badge</label><input id="new-s-badge" placeholder="e.g. Depart"></div>
+     <div class="modal-field"><label>Notes</label><input id="new-s-detail" placeholder="e.g. Platform 7"></div>`,
+    () => {
+      const newStop = {
+        id: 't' + Date.now(),
+        name: document.getElementById('new-s-name').value.trim() || 'New Stop',
+        time: document.getElementById('new-s-time').value.trim() || 'TBC',
+        badge: document.getElementById('new-s-badge').value.trim() || 'Stop',
+        confirmed: false,
+        detail: document.getElementById('new-s-detail').value.trim() || 'Add details…'
+      };
+      transportData.push(newStop);
+      document.getElementById('transport-timeline').appendChild(buildStopEl(newStop));
+      closeModal();
+    }
+  );
+}
+
+// ─── BUDGET ──────────────────────────────────────────
+let budgetTotal = 2000;
+
+function addExpense() {
+  const desc = document.getElementById('exp-desc').value.trim();
+  const cat  = document.getElementById('exp-cat').value;
+  const amt  = parseFloat(document.getElementById('exp-amount').value) || 0;
+  const paid = document.getElementById('exp-paidby').value;
+  if (!desc || amt <= 0) return;
+
+  const id = 'exp-' + Date.now();
+  expenses.push({ id, desc, cat, amt, paid });
+  expTotal += amt;
+
+  const tbody = document.getElementById('expenses-body');
+  const addRow = tbody.querySelector('.add-expense-row');
+  tbody.insertBefore(buildExpenseRow({ id, desc, cat, amt, paid }), addRow);
+
+  document.getElementById('exp-desc').value = '';
+  document.getElementById('exp-amount').value = '';
+  updateBudgetSummary();
+}
+
+function buildExpenseRow(e) {
+  const tr = document.createElement('tr');
+  tr.id = e.id;
+  tr.innerHTML = `
+    <td contenteditable="true" style="outline:none;" onblur="editExpenseField('${e.id}','desc',this.innerText)">${e.desc}</td>
+    <td><span class="expense-category" contenteditable="true" style="outline:none;" onblur="editExpenseField('${e.id}','cat',this.innerText)">${e.cat}</span></td>
+    <td contenteditable="true" style="outline:none;" onblur="editExpenseAmount('${e.id}',this.innerText)">£${e.amt.toFixed(2)}</td>
+    <td contenteditable="true" style="outline:none;" onblur="editExpenseField('${e.id}','paid',this.innerText)">${e.paid}</td>
+    <td><button onclick="removeExpense('${e.id}')" style="background:none;border:none;cursor:pointer;color:var(--stone);font-size:0.9rem;transition:color 0.15s;" onmouseover="this.style.color='#a04040'" onmouseout="this.style.color='var(--stone)'" title="Remove">✕</button></td>
+  `;
+  return tr;
+}
+
+function editExpenseField(id, field, val) {
+  const e = expenses.find(e => e.id === id);
+  if (e) e[field] = val.trim();
+}
+
+function editExpenseAmount(id, raw) {
+  const e = expenses.find(ex => ex.id === id);
+  if (!e) return;
+  const newAmt = parseFloat(raw.replace(/[^0-9.]/g,'')) || 0;
+  expTotal = expTotal - e.amt + newAmt;
+  e.amt = newAmt;
+  const el = document.getElementById(id);
+  if (el) el.cells[2].innerText = '£' + newAmt.toFixed(2);
+  updateBudgetSummary();
+}
+
+function removeExpense(id) {
+  const e = expenses.find(ex => ex.id === id);
+  if (e) expTotal -= e.amt;
+  expenses = expenses.filter(ex => ex.id !== id);
+  const el = document.getElementById(id);
+  if (el) { el.style.opacity='0'; setTimeout(()=>el.remove(),250); }
+  updateBudgetSummary();
+}
+
+function updateBudgetCard() {
+  const raw = document.getElementById('total-budget-val').innerText.replace(/[^0-9.]/g,'');
+  budgetTotal = parseFloat(raw) || 0;
+  updateBudgetSummary();
+}
+
+function updateBudgetSummary() {
+  document.getElementById('spent-val').innerText = expTotal.toFixed(2);
+  const rem = budgetTotal - expTotal;
+  document.getElementById('remaining-val').innerText = '£' + rem.toFixed(2);
+  document.getElementById('remaining-val').style.color = rem < 0 ? '#a04040' : 'var(--ink)';
+  document.getElementById('per-person-val').innerText = '£' + (rem / 4).toFixed(2);
+}
+
+// ─── NOTES ───────────────────────────────────────────
+const noteColors = ['#7b4f6e','#3d5a3e','#c9a84c','#2a4a6e','#8c5030'];
+let noteCounter = 0;
+
+function seedNotes() {
+  addNote('Must Do: Haggis!', 'Try proper haggis, neeps and tatties at a traditional pub. Ask locals for their favourite spot.', 'Mum');
+  addNote('Idea: Loch Ness Day Trip', 'Coach tour from Edinburgh? About 3.5 hrs each way but could be worth it for the views. Research Rabbie\'s Tours.', 'Dad');
+  addNote('Book Early', 'Edinburgh Castle gets very busy in summer — book tickets online in advance to skip the queue.', 'You');
+}
+
+function addNote(title='', body='', author='You') {
+  const grid = document.getElementById('notes-grid');
+  const addBtn = grid.querySelector('.add-note-btn');
+  const color = noteColors[noteCounter++ % noteColors.length];
+  const id = 'note-' + Date.now() + Math.random();
+  const div = document.createElement('div');
+  div.className = 'note-card';
+  div.id = id;
+  div.innerHTML = `
+    <div class="note-card-color-bar" style="background:${color}"></div>
+    <input class="note-title" value="${title}" placeholder="Note title…">
+    <textarea class="note-body" placeholder="Write your thoughts…">${body}</textarea>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px;">
+      <div class="note-author" contenteditable="true" style="outline:none;" title="Click to change author">— ${author}</div>
+    </div>
+    <button class="note-delete" onclick="removeNote('${id}')" title="Delete note">✕</button>
+  `;
+  grid.insertBefore(div, addBtn);
+}
+
+function openAddNoteModal() {
+  const names = travellers.map(t => t.name);
+  openModal('Add a Note',
+    `<div class="modal-field"><label>Title</label><input id="new-note-title" placeholder="e.g. Restaurant idea"></div>
+     <div class="modal-field"><label>Note</label><textarea id="new-note-body" style="min-height:80px;resize:vertical;" placeholder="Write something…"></textarea></div>
+     <div class="modal-field"><label>Added by</label><select id="new-note-author">${names.map(n=>`<option>${n}</option>`).join('')}</select></div>`,
+    () => {
+      const title = document.getElementById('new-note-title').value.trim();
+      const body  = document.getElementById('new-note-body').value.trim();
+      const author = document.getElementById('new-note-author').value;
+      addNote(title, body, author);
+      closeModal();
+    }
+  );
+}
+
+function removeNote(id) {
+  const el = document.getElementById(id);
+  if (el) { el.style.opacity='0'; setTimeout(()=>el.remove(),300); }
+}
+
+// ─── MODAL ───────────────────────────────────────────
+function openModal(title, bodyHTML, onConfirm) {
+  document.getElementById('modal-title').innerText = title;
+  document.getElementById('modal-body').innerHTML = bodyHTML;
+  document.getElementById('modal-confirm').onclick = onConfirm;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+}
+
+function closeModalOnOverlay(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
+</script>
+</body>
+</html>
