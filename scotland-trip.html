@@ -1546,5 +1546,60 @@ function closeModalOnOverlay(e) {
   if (e.target === document.getElementById('modal-overlay')) closeModal();
 }
 </script>
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+const supabase = createClient(
+  "YOUR_SUPABASE_URL",
+  "YOUR_SUPABASE_ANON_KEY"
+);
+
+const textarea = document.getElementById("text");
+
+// load data
+async function load() {
+  const { data } = await supabase
+    .from("notes")
+    .select("*")
+    .eq("id", 1)
+    .single();
+
+  textarea.value = data.content;
+}
+
+// save data
+async function save(value) {
+  await supabase
+    .from("notes")
+    .update({ content: value })
+    .eq("id", 1);
+}
+
+// realtime updates
+supabase
+  .channel("room1")
+  .on(
+    "postgres_changes",
+    {
+      event: "*",
+      schema: "public",
+      table: "notes"
+    },
+    (payload) => {
+      textarea.value = payload.new.content;
+    }
+  )
+  .subscribe();
+
+// init
+window.onload = () => {
+  load();
+
+  textarea.addEventListener("input", (e) => {
+    save(e.target.value);
+  });
+};
+</script>
+  <textarea id="text"></textarea>
 </body>
 </html>
